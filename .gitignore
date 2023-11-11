@@ -1,0 +1,13 @@
+node_modules/
+npm-debug.log
+/webpack-stats.json
+api/__pycache__/
+/__pycache__/
+/.vscode/
+.env
+db.sqlite3
+*.pyc
+/venv/
+/env/
+/output/
+/cache/
