@@ -1,8 +1,10 @@
 import React from "react";
+import HomePage from "./HomePage";
 
 function App() {
-  return <div>
-    <h1>DEATH CLASSIC BITCH</h1>
-  </div>;
+  return (
+    <div>
+    </div>
+  );
 }
 export default App;
