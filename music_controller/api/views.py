@@ -6,7 +6,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 # Create your views here.
-class RoomView(generics.ListAPIView):
+class RoomView(generics.ListCreateAPIView):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
     
@@ -20,6 +20,18 @@ class CreateRoomView(APIView):
         serializer = self.serializer_class(data = request.data)
         
         if serializer.is_valid():
-            guest_can_pause = serializer.data.guest_can_pause
-            votes_to_skip = serializer.data.votes_to_skip
+            guest_can_pause = serializer.data.get('guest_can_pause')
+            votes_to_skip = serializer.data.get('data.votes_to_skip')
             host = self.request.session.session_key
+            queryset = Room.objects.filter(host=host, guest=guest_can_pause)
+            
+            if queryset.exists():
+                room = queryset[0]
+                room.guest_can_pause = guest_can_pause
+                room.votes_to_skip = votes_to_skip
+                room.save(update_fields=['guest_can_pause','votes_to_skip'])
+            else:
+                room = Room(host = host, guest_can_pause = guest_can_pause, votes_to_skip = votes_to_skip)
+                room.save()
+                
+            return Response(RoomSerializer(room).data, status=status.HTTP_201_CREATED)
