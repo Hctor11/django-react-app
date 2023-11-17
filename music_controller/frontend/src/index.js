@@ -4,6 +4,11 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RoomJoinPage from "./components/RoomJoinPage";
 import HomePage from "./components/HomePage";
 import CreateRoomPage from "./components/CreateRoomPage";
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+
 
 const router = createBrowserRouter([
   {
