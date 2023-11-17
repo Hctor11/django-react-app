@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack --mode development --watch",
-    "build":"webpack --mode production"
+    "dev": "webpack watch --mode development",
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
@@ -25,7 +25,9 @@
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.16",
-    "@mui/material": "^5.14.17",
-    "react-router-dom": "^6.18.0"
+    "@mui/material": "^5.14.18",
+    "@mui/styled-engine-sc": "^6.0.0-alpha.6",
+    "react-router-dom": "^6.18.0",
+    "styled-components": "^6.1.1"
   }
 }

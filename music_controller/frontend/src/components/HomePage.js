@@ -1,11 +1,12 @@
 import React from 'react'
 import Navigation from './Navigation'
+import Button from '@mui/material/Button';
 
 const HomePage = () => {
   return (
     <div>
         <Navigation/>
-        <h1>This is the homepage of the application</h1>
+        <h1>Music controller</h1>
     </div>
   )
 }
