@@ -14,13 +14,28 @@ import {
 import { Link } from "react-router-dom";
 
 const CreateRoomPage = () => {
-  const defaultVotes = 2;
+
+  const [guestCanPause, setGuestCanPause] = React.useState(true);
+  const [defaultVotes, setDefaultVotes] = React.useState(2);
+
+  const handleVotesChange = (e) => {
+    setDefaultVotes(e.target.value);
+  }
+
+  const handleGuestCanPauseChange = (e) => {
+    setGuestCanPause(e.target.value === "true" ? true : false);
+  }
+
+  const handleSubmit = () => {
+    console.log(`can pause: ${guestCanPause}`)
+    console.log(`can votes to change: ${defaultVotes}`)
+  }
 
   return (
     <div>
       <Navigation />
 
-      <Grid container spacing={8} gap={5}>
+      <Grid container gap={5}>
         <Grid item xs={12} alignContent="center">
           <Typography variant="h4" align="center">
             Create a room
@@ -39,6 +54,8 @@ const CreateRoomPage = () => {
             </FormHelperText>
             <RadioGroup
               row
+              defaultValue={guestCanPause}
+              onChange={(e) => handleGuestCanPauseChange(e)}
               aria-label="controlled-radio-buttons-group"
               name="controlled-radio-buttons-group"
             >
@@ -73,6 +90,7 @@ const CreateRoomPage = () => {
                 min: 1,
               }}
               label="Votes Required To Skip Song"
+              onChange={(e) => handleVotesChange(e)}
             />
           </FormControl>
         </Grid>
@@ -87,7 +105,7 @@ const CreateRoomPage = () => {
           <Button color="error" variant="outlined" component={Link} to="/">
             Back to Home
           </Button>
-          <Button color="primary" variant="contained">
+          <Button color="primary" variant="contained" onClick={handleSubmit}>
             Create Room
           </Button>
         </Grid>
