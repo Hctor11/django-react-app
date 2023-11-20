@@ -14,22 +14,35 @@ import {
 import { Link } from "react-router-dom";
 
 const CreateRoomPage = () => {
-
-  const [guestCanPause, setGuestCanPause] = React.useState(true);
+  const [guestCanPause, setGuestCanPause] = React.useState("true");
   const [defaultVotes, setDefaultVotes] = React.useState(2);
 
   const handleVotesChange = (e) => {
     setDefaultVotes(e.target.value);
-  }
+  };
 
   const handleGuestCanPauseChange = (e) => {
     setGuestCanPause(e.target.value === "true" ? true : false);
-  }
+  };
 
-  const handleSubmit = () => {
-    console.log(`can pause: ${guestCanPause}`)
-    console.log(`can votes to change: ${defaultVotes}`)
-  }
+  const handleSubmit = (e) => {
+    try {
+      e.preventDefault();
+      const reqOptions = {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          guest_can_pause: guestCanPause,
+          votes_to_skip: defaultVotes,
+        }),
+      };
+      fetch("/create-room", reqOptions)
+        .then((res) => res.json())
+        .then((data) => console.log(data));
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
 
   return (
     <div>

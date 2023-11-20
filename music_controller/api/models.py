@@ -10,7 +10,7 @@ def code_generator():
         
         if Room.objects.filter(code=code).count() == 0:
             break
-
+    return code
 
 # Create your models here.
 """
